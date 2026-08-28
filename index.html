@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tess Kollof — Portfolio</title>
+<meta name="description" content="Portfolio van Tess Kollof — CMD-student aan de Hogeschool van Amsterdam. Visual design, webdesign en frontend development.">
+<meta name="author" content="Tess Kollof">
+<meta name="theme-color" content="#FE97A5">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tess Kollof — Portfolio">
+<meta property="og:description" content="Visual design, webdesign en frontend development door Tess Kollof.">
+<meta property="og:image" content="assets/img/tess-avatar.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ED3E78' d='M12 0 13.84 10.16 24 12 13.84 13.84 12 24 10.16 13.84 0 12 10.16 10.16Z'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="assets/img/tess-avatar.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skiplink" href="#main">Ga naar de inhoud</a>
+<div class="cursorglow" aria-hidden="true"></div>
+
+<!-- ========= SVG sprite: iconen + cute graphics ========= -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="d-swirl" viewBox="0 0 48 46">
+    <path d="M2 32C2 13 21 3 35 12c12 7.6 10 27-4 29-10 1.4-15-8-9-13 5-4.2 12-1 11 5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="d-sparkle" viewBox="0 0 24 24">
+    <path d="M12 0 13.84 10.16 24 12 13.84 13.84 12 24 10.16 13.84 0 12 10.16 10.16Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="d-star" viewBox="0 0 32 32">
+    <path d="M16 1.5 20.5 11 31 12.3l-7.7 7.2 2 10.4-9.3-5.1-9.3 5.1 2-10.4L1 12.3 11.5 11Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="d-heart" viewBox="0 0 24 24">
+    <path d="M12 21.6S3.2 16 3.2 9.9A4.9 4.9 0 0 1 12 6.7a4.9 4.9 0 0 1 8.8 3.2c0 6.1-8.8 11.7-8.8 11.7Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="d-squiggle" viewBox="0 0 64 24">
+    <path d="M2 14c6-12 12 10 18-2s12 10 18-2 10 4 14 6" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="d-arrow" viewBox="0 0 60 34">
+    <path d="M3 8c9-6 18 4 25 10 5 4.4 12 8 22 6" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M44 18l6 6-9 3" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="d-loop" viewBox="0 0 62 34">
+    <path d="M2 28c11 0 12-25 23-21 9 3.3-2 19 7 21 9 2 15-12 17-22" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="d-spiral" viewBox="0 0 44 34">
+    <path d="M24 14c5 1.6 5.6 8.4.6 11.4C19 29 10 25 9 18 7.8 9.6 15.4 3 24 3.6c9.8.8 16.6 9.4 15.4 19" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="d-flower" viewBox="0 0 32 32">
+    <g fill="currentColor">
+      <circle cx="16" cy="9" r="6.2"/><circle cx="9.34" cy="13.84" r="6.2"/>
+      <circle cx="11.89" cy="21.66" r="6.2"/><circle cx="20.11" cy="21.66" r="6.2"/>
+      <circle cx="22.66" cy="13.84" r="6.2"/>
+    </g>
+    <circle cx="16" cy="16.4" r="3.6" fill="#FFF7F0"/>
+  </symbol>
+  <symbol id="d-dots" viewBox="0 0 34 22">
+    <g fill="currentColor"><circle cx="5" cy="16" r="4"/><circle cx="17" cy="9" r="3"/><circle cx="28" cy="4" r="2.2"/></g>
+  </symbol>
+  <symbol id="i-medal" viewBox="0 0 32 32">
+    <path d="M9.6 21.5 5.4 30l5.4-1.6L13 32l3.4-8.4Zm12.8 0L27 30l-5.4-1.6L19 32l-3.4-8.4Z" fill="currentColor"/>
+    <path d="M16.0 2.0 18.48 4.73 22.0 3.61 22.79 7.21 26.39 8.0 25.27 11.52 28.0 14.0 25.27 16.48 26.39 20.0 22.79 20.79 22.0 24.39 18.48 23.27 16.0 26.0 13.52 23.27 10.0 24.39 9.21 20.79 5.61 20.0 6.73 16.48 4.0 14.0 6.73 11.52 5.61 8.0 9.21 7.21 10.0 3.61 13.52 4.73Z" fill="currentColor"/>
+    <circle cx="16" cy="14" r="4.6" fill="#fff"/>
+    <circle cx="16" cy="14" r="2.4" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-cap" viewBox="0 0 32 32">
+    <path d="M16 4 31 10.4 16 16.8 1 10.4Z" fill="currentColor"/>
+    <path d="M6 13.2l10 4.3 10-4.3v6.6c0 2.4-4.5 4.3-10 4.3s-10-1.9-10-4.3Z" fill="currentColor"/>
+    <path d="M29.2 11.6v7.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="29.2" cy="21.6" r="2.2" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24">
+    <rect x="2" y="4.8" width="20" height="14.4" rx="3.2" fill="currentColor"/>
+    <path d="M4.6 8.2 12 13.4l7.4-5.2" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24">
+    <rect x="2" y="2" width="20" height="20" rx="4.4" fill="currentColor"/>
+    <path d="M6.1 9.4h2.5V18H6.1Zm1.25-3.6a1.45 1.45 0 1 1 0 2.9 1.45 1.45 0 0 1 0-2.9ZM10.4 9.4h2.4v1.2a2.7 2.7 0 0 1 2.4-1.3c1.9 0 2.9 1.2 2.9 3.5V18h-2.5v-4.6c0-1.1-.4-1.8-1.4-1.8s-1.4.7-1.4 1.8V18h-2.4Z" fill="#fff"/>
+  </symbol>
+  <symbol id="i-github" viewBox="0 0 24 24">
+    <path d="M12 1.8A10.2 10.2 0 0 0 8.8 21.7c.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.4-1.1.7-1.4-2.2-.2-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c2-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.8-4.6 5 .4.4.7 1.1.7 2.2v3c0 .3.2.6.7.5A10.2 10.2 0 0 0 12 1.8Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24">
+    <path d="M4.5 12h14m-5.4-5.6L18.7 12l-5.6 5.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-external" viewBox="0 0 24 24">
+    <path d="M13.5 4.5H19v5.5M18.4 5.1 11 12.5M17 14v3.8A2.2 2.2 0 0 1 14.8 20H7.2A2.2 2.2 0 0 1 5 17.8V10.2A2.2 2.2 0 0 1 7.2 8H11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
+
+<!-- ========= Navigatie ========= -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="#top">
+      <span class="nav__avatar"><picture><source srcset="assets/img/tess-avatar.webp" type="image/webp"><img src="assets/img/tess-avatar.jpg" alt="" width="56" height="56" loading="lazy" decoding="async"></picture></span>
+      Tess Kollof
+    </a>
+    <nav class="nav__links" aria-label="Hoofdmenu">
+      <a href="#over" data-navlink>Ervaring</a>
+      <a href="#projecten" data-navlink>Projecten</a>
+      <a href="#contact" data-navlink>Contact</a>
+    </nav>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="mobilemenu">
+      <span class="burger__box" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="sr-only">Menu openen</span>
+    </button>
+  </div>
+</header>
+
+<div class="mobilemenu" id="mobilemenu" inert>
+  <nav aria-label="Mobiel menu">
+    <a href="#over">Ervaring</a>
+    <a href="#projecten">Projecten</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="mobilemenu__deco" aria-hidden="true">
+    <svg class="deco"><use href="#d-swirl"></use></svg>
+    <svg class="deco"><use href="#d-sparkle"></use></svg>
+    <svg class="deco"><use href="#d-heart"></use></svg>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ========= Hero ========= -->
+  <section class="hero" id="top">
+    <div class="hero__sky" aria-hidden="true"></div>
+    <div class="hero__glow" aria-hidden="true"></div>
+
+    <div class="hero__deco" aria-hidden="true">
+      <svg class="deco deco--a" data-float="1" data-speed="0.18"><use href="#d-sparkle"></use></svg>
+      <svg class="deco deco--b" data-float="1" data-speed="0.34"><use href="#d-swirl"></use></svg>
+      <svg class="deco deco--c" data-float="1" data-speed="0.10"><use href="#d-star"></use></svg>
+      <svg class="deco deco--d" data-float="1" data-speed="0.26"><use href="#d-flower"></use></svg>
+      <svg class="deco deco--e" data-float="1" data-speed="0.42"><use href="#d-loop"></use></svg>
+      <svg class="deco deco--f" data-float="1" data-speed="0.14"><use href="#d-heart"></use></svg>
+      <svg class="deco deco--g" data-float="1" data-speed="0.30"><use href="#d-dots"></use></svg>
+      <svg class="deco deco--h" data-float="1" data-speed="0.22"><use href="#d-sparkle"></use></svg>
+    </div>
+
+    <div class="hero__stage">
+      <h1 class="hero__title">
+        <span class="sr-only">Portfolio — Tess Kollof</span>
+        <canvas id="wordmark" class="hero__canvas" aria-hidden="true"></canvas>
+      </h1>
+      <p class="hero__tag" data-reveal>
+        Visual design <span aria-hidden="true">·</span> Webdesign <span aria-hidden="true">·</span> Frontend
+      </p>
+      <p class="hero__hint" data-reveal>
+        <svg class="hero__hinticon" aria-hidden="true"><use href="#d-sparkle"></use></svg>
+        beweeg je muis over de letters
+      </p>
+    </div>
+
+    <a class="scrollcue" href="#over">
+      <span>scroll</span>
+      <svg aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+    </a>
+  </section>
+
+  <!-- ========= Marquee ========= -->
+  <div class="marqueewrap" aria-hidden="true">
+   <div class="marquee">
+    <div class="marquee__track">
+      <div class="marquee__group">
+        <span>HTML</span><svg class="marquee__sep"><use href="#d-sparkle"></use></svg>
+        <span>CSS</span><svg class="marquee__sep"><use href="#d-heart"></use></svg>
+        <span>JavaScript</span><svg class="marquee__sep"><use href="#d-star"></use></svg>
+        <span>Figma</span><svg class="marquee__sep"><use href="#d-flower"></use></svg>
+        <span>Illustrator</span><svg class="marquee__sep"><use href="#d-sparkle"></use></svg>
+        <span>Photoshop</span><svg class="marquee__sep"><use href="#d-heart"></use></svg>
+        <span>Adobe XD</span><svg class="marquee__sep"><use href="#d-star"></use></svg>
+        <span>UX Design</span><svg class="marquee__sep"><use href="#d-flower"></use></svg>
+      </div>
+      <div class="marquee__group">
+        <span>HTML</span><svg class="marquee__sep"><use href="#d-sparkle"></use></svg>
+        <span>CSS</span><svg class="marquee__sep"><use href="#d-heart"></use></svg>
+        <span>JavaScript</span><svg class="marquee__sep"><use href="#d-star"></use></svg>
+        <span>Figma</span><svg class="marquee__sep"><use href="#d-flower"></use></svg>
+        <span>Illustrator</span><svg class="marquee__sep"><use href="#d-sparkle"></use></svg>
+        <span>Photoshop</span><svg class="marquee__sep"><use href="#d-heart"></use></svg>
+        <span>Adobe XD</span><svg class="marquee__sep"><use href="#d-star"></use></svg>
+        <span>UX Design</span><svg class="marquee__sep"><use href="#d-flower"></use></svg>
+      </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- ========= Over mij / Ervaring ========= -->
+  <section class="about" id="over">
+    <div class="about__deco" aria-hidden="true">
+      <svg class="deco deco--a1" data-float="1" data-speed="0.20"><use href="#d-spiral"></use></svg>
+      <svg class="deco deco--a2" data-float="1" data-speed="0.32"><use href="#d-sparkle"></use></svg>
+      <svg class="deco deco--a3" data-float="1" data-speed="0.12"><use href="#d-squiggle"></use></svg>
+      <svg class="deco deco--a4" data-float="1" data-speed="0.26"><use href="#d-heart"></use></svg>
+    </div>
+
+    <div class="wrap about__grid">
+      <div class="about__photo" data-reveal>
+        <picture>
+          <source srcset="assets/img/tess-about.webp" type="image/webp">
+          <img src="assets/img/tess-about.jpg" alt="Tess Kollof" width="960" height="1200" loading="lazy" decoding="async">
+        </picture>
+        <span class="about__sticker" aria-hidden="true">
+          <svg><use href="#d-star"></use></svg> hoi!
+        </span>
+      </div>
+
+      <div class="about__body">
+        <div class="badges">
+          <div class="badge" data-reveal>
+            <span class="badge__icon"><svg aria-hidden="true"><use href="#i-medal"></use></svg></span>
+            <div class="badge__text">
+              <strong>Ervaring</strong>
+              <span>2+ jaar Visual design &amp; Webdesign</span>
+            </div>
+          </div>
+          <div class="badge" data-reveal data-delay="1">
+            <span class="badge__icon"><svg aria-hidden="true"><use href="#i-cap"></use></svg></span>
+            <div class="badge__text">
+              <strong>Educatie</strong>
+              <span>Communication &amp; Multimedia Design</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about__text" data-reveal data-delay="2">
+          <p>Hoi! Ik ben Tess, een enthousiaste en gedreven CMD-student aan de Hogeschool van Amsterdam. Met een passie voor zowel frontend development als visual design, streef ik ernaar om boeiende en gebruiksvriendelijke digitale ervaringen te creëren. Mijn doel is om mijn vaardigheden verder te ontwikkelen en bij te dragen aan innovatieve projecten in de toekomst. Ik ben nog steeds lerende en sta open voor nieuwe kansen en uitdagingen.</p>
+          <p class="about__closer">Laten we samenwerken!</p>
+        </div>
+
+        <div class="about__actions" data-reveal data-delay="3">
+          <a class="btn btn--primary" href="assets/CV_Tess_Kollof.pdf" target="_blank" rel="noopener">
+            Download cv <svg aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          </a>
+          <a class="btn btn--ghost" href="#contact">Neem contact op</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= Projecten ========= -->
+  <section class="projects" id="projecten">
+    <div class="projects__deco" aria-hidden="true">
+      <svg class="deco deco--p1" data-float="1" data-speed="0.24"><use href="#d-swirl"></use></svg>
+      <svg class="deco deco--p2" data-float="1" data-speed="0.16"><use href="#d-sparkle"></use></svg>
+      <svg class="deco deco--p3" data-float="1" data-speed="0.34"><use href="#d-flower"></use></svg>
+      <svg class="deco deco--p4" data-float="1" data-speed="0.20"><use href="#d-star"></use></svg>
+    </div>
+
+    <div class="wrap">
+      <div class="projects__head">
+        <h2 class="h2" data-reveal>Bekijk mijn projecten</h2>
+        <div class="railnav" data-reveal>
+          <button class="railnav__btn" type="button" data-rail="prev" aria-label="Vorige projecten">
+            <svg aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          </button>
+          <button class="railnav__btn" type="button" data-rail="next" aria-label="Volgende projecten">
+            <svg aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="rail" id="rail" tabindex="0" role="region" aria-label="Projecten, horizontaal scrollbaar">
+      <ul class="rail__list">
+        <li class="card" data-reveal>
+          <div class="card__shot">
+            <picture>
+              <source srcset="assets/img/project-boekenzoeker.webp" type="image/webp">
+              <img src="assets/img/project-boekenzoeker.jpg" alt="Boekenzoeker — ontwerp van een zoekfunctie voor kinderboeken" width="1000" height="1000" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Boekenzoeker</h3>
+            <p class="card__desc">Een boekenzoeker voor kinderen, ontworpen in de huisstijl van Gemeente Amsterdam.</p>
+            <a class="btn btn--primary btn--full" href="https://xd.adobe.com/view/ed07539b-f12a-4488-a52a-48838edb302f-b854/?fullscreen&amp;hints=off" target="_blank" rel="noopener">
+              Bekijk <svg aria-hidden="true"><use href="#i-external"></use></svg>
+            </a>
+            <span class="card__meta">Adobe XD prototype</span>
+          </div>
+        </li>
+
+        <li class="card" data-reveal data-delay="1">
+          <div class="card__shot">
+            <picture>
+              <source srcset="assets/img/project-bakjeplant.webp" type="image/webp">
+              <img src="assets/img/project-bakjeplant.jpg" alt="Bakje Plant — mobiele website over het vergroenen van Amsterdam" width="1000" height="1000" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Bakje Plant</h3>
+            <p class="card__desc">Een mobiele website die Amsterdammers bedankt voor het groener maken van de stad. Zelf ontworpen én gecodeerd.</p>
+            <a class="btn btn--primary btn--full" href="https://tejuko.github.io/BakjePlant/index.html" target="_blank" rel="noopener">
+              Bekijk <svg aria-hidden="true"><use href="#i-external"></use></svg>
+            </a>
+            <a class="card__link" href="https://github.com/tejuko/BakjePlant" target="_blank" rel="noopener">Code op GitHub</a>
+          </div>
+        </li>
+
+        <li class="card" data-reveal data-delay="2">
+          <div class="card__shot">
+            <picture>
+              <source srcset="assets/img/project-hemacupcakes.webp" type="image/webp">
+              <img src="assets/img/project-hemacupcakes.jpg" alt="HEMA Cupcakes — besteldpagina voor een eigen cupcakebox" width="1000" height="1000" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">HEMA Cupcakes</h3>
+            <p class="card__desc">Een bestelflow waarin je je eigen cupcakebox samenstelt, volledig in de huisstijl van de HEMA.</p>
+            <a class="btn btn--primary btn--full" href="https://xd.adobe.com/view/0b43d6d1-0e2c-48b5-a184-23f760993929-5e10/?fullscreen&amp;hints=off" target="_blank" rel="noopener">
+              Bekijk <svg aria-hidden="true"><use href="#i-external"></use></svg>
+            </a>
+            <span class="card__meta">Adobe XD prototype</span>
+          </div>
+        </li>
+
+        <li class="card card--more" data-reveal data-delay="3">
+          <div class="card__moreinner">
+            <svg class="card__moreicon" aria-hidden="true"><use href="#d-flower"></use></svg>
+            <p>Er komt steeds werk bij — de rest staat op GitHub.</p>
+            <a class="btn btn--primary" href="https://github.com/tejuko" target="_blank" rel="noopener">
+              Meer projecten <svg aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="wrap projects__foot">
+      <a class="btn btn--primary btn--big" href="https://github.com/tejuko" target="_blank" rel="noopener" data-reveal>
+        Meer projecten <svg aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========= Contact ========= -->
+  <section class="contact" id="contact">
+    <div class="contact__deco" aria-hidden="true">
+      <svg class="deco deco--c1" data-float="1" data-speed="0.28"><use href="#d-loop"></use></svg>
+      <svg class="deco deco--c2" data-float="1" data-speed="0.16"><use href="#d-sparkle"></use></svg>
+      <svg class="deco deco--c3" data-float="1" data-speed="0.36"><use href="#d-heart"></use></svg>
+      <svg class="deco deco--c4" data-float="1" data-speed="0.20"><use href="#d-spiral"></use></svg>
+      <svg class="deco deco--c5" data-float="1" data-speed="0.12"><use href="#d-star"></use></svg>
+    </div>
+    <div class="wrap contact__inner">
+      <h2 class="h2 contact__title" data-reveal>Contact</h2>
+      <p class="contact__lead" data-reveal data-delay="1">Een vraag, een stage of gewoon even sparren? Ik hoor het graag.</p>
+      <div class="pill" data-reveal data-delay="2">
+        <a class="pill__item" href="mailto:tessjuliette02@gmail.com">
+          <span class="pill__icon"><svg aria-hidden="true"><use href="#i-mail"></use></svg></span>
+          tessjuliette02@gmail.com
+        </a>
+        <a class="pill__item" href="https://www.linkedin.com/in/tess-kollof-4b7104290/" target="_blank" rel="noopener">
+          <span class="pill__icon"><svg aria-hidden="true"><use href="#i-linkedin"></use></svg></span>
+          LinkedIn
+        </a>
+        <a class="pill__item" href="https://github.com/tejuko" target="_blank" rel="noopener">
+          <span class="pill__icon"><svg aria-hidden="true"><use href="#i-github"></use></svg></span>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <span>&copy; <span id="year">2026</span> Tess Kollof</span>
+    <span class="footer__made">gemaakt met <svg aria-hidden="true"><use href="#d-heart"></use></svg> in Amsterdam</span>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>
