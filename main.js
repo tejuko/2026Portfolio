@@ -21,6 +21,28 @@
     var COLOR_TOP = [255, 255, 255];   // wit, linksboven
     var COLOR_BOT = [222, 66, 89];     // #DE4259, rechtsonder
 
+    // Het verloop staat als 64 kleuren klaar in een lijst. Per beeldje zoeken we
+    // per blokje alleen een nummer op; dat is snel genoeg voor duizenden blokjes.
+    var STEPS_N = 64;
+    var PALETTE = (function () {
+      var out = [];
+      for (var i = 0; i < STEPS_N; i++) {
+        var t = i / (STEPS_N - 1);
+        out.push('rgb(' +
+          Math.round(COLOR_TOP[0] + (COLOR_BOT[0] - COLOR_TOP[0]) * t) + ',' +
+          Math.round(COLOR_TOP[1] + (COLOR_BOT[1] - COLOR_TOP[1]) * t) + ',' +
+          Math.round(COLOR_TOP[2] + (COLOR_BOT[2] - COLOR_TOP[2]) * t) + ')');
+      }
+      return out;
+    })();
+    // De kleurgolf. SHIFT_DOWN is hoeveel lichter het mag worden, SHIFT_UP
+    // hoeveel dieper. Vooral naar dieper, zodat het nooit slechter leesbaar
+    // wordt dan de rusttoestand.
+    var SHIFT_DOWN  = 0.07;
+    var SHIFT_UP    = 0.34;
+    var SHIFT_SPEED = 0.00075;   // hoger = snellere golf
+    var SHIFT_LENGTH = 0.0055;   // hoger = kortere golf, meer banen tegelijk
+
     var W = 0, H = 0, dpr = 1, cellSize = 8, drawSize = 7;
     var cells = [];
     var pointer = { x: -9999, y: -9999, on: false };
@@ -48,7 +70,7 @@
       octx.textAlign = 'center';
       octx.textBaseline = 'middle';
 
-      var maxW = W * (W < 620 ? 0.96 : 0.94);
+      var maxW = W * (W < 620 ? 0.95 : 0.9);
       var size = H * 0.92;
       for (var i = 0; i < 24; i++) {
         octx.font = '700 ' + size + 'px "Space Grotesk", system-ui, sans-serif';
@@ -68,27 +90,18 @@
       }
 
       // 1b. raster aftasten -> pixelblokjes
-      cellSize = Math.max(4, W / 142);
-      drawSize = cellSize * 0.9;
+      cellSize = Math.max(4, Math.round(W / 130));
+      var gap = Math.max(1, Math.round(cellSize * 0.16));
+      drawSize = cellSize - gap;
 
       cells = [];
       var minX = W, maxX = 0, minY = H, maxY = 0;
       var hits = [];
-      // Bedekking per cel meten in plaats van een enkele pixel in het midden.
-      // Met een enkele sample vallen randcellen willekeurig aan of uit en worden
-      // de letters rommelig; het gemiddelde geeft nette, regelmatige vormen.
-      var STEPS = 4;
       for (var y = 0; y < H; y += cellSize) {
         for (var x = 0; x < W; x += cellSize) {
-          var cover = 0;
-          for (var iy = 0; iy < STEPS; iy++) {
-            for (var ix = 0; ix < STEPS; ix++) {
-              var sx = Math.min(W - 1, Math.round(x + (ix + 0.5) * cellSize / STEPS));
-              var sy = Math.min(H - 1, Math.round(y + (iy + 0.5) * cellSize / STEPS));
-              if (data[(sy * W + sx) * 4 + 3] > 120) cover++;
-            }
-          }
-          if (cover >= STEPS * STEPS * 0.45) {
+          var sx = Math.min(W - 1, x + (cellSize >> 1));
+          var sy = Math.min(H - 1, y + (cellSize >> 1));
+          if (data[(sy * W + sx) * 4 + 3] > 130) {
             hits.push([x, y]);
             if (x < minX) minX = x;
             if (x > maxX) maxX = x;
@@ -117,10 +130,10 @@
           oy: hy + (Math.random() - 0.5) * H * 2.6,
           delay: nx * 340 + Math.random() * 260,
           wob: Math.random() * Math.PI * 2,
-          color: 'rgb(' +
-            Math.round(lerp(COLOR_TOP[0], COLOR_BOT[0], t)) + ',' +
-            Math.round(lerp(COLOR_TOP[1], COLOR_BOT[1], t)) + ',' +
-            Math.round(lerp(COLOR_TOP[2], COLOR_BOT[2], t)) + ')'
+          // plek in het verloop (0 = wit, 1 = diep roze) en de eigen fase van de
+          // kleurgolf, zodat die diagonaal over het woord loopt
+          bt: t,
+          phase: (hx + hy) * SHIFT_LENGTH
         });
       }
       return cells.length > 0;
@@ -170,7 +183,7 @@
 
           // rustige golf die van links naar rechts loopt (per kolom, niet per blokje,
           // anders valt het woord uiteen in ruis)
-          var wave = Math.sin(now * 0.0014 + c.tx * 0.014) * 0.7;
+          var wave = Math.sin(now * 0.0016 + c.tx * 0.016) * 1.2;
           px = c.x;
           py = c.y + wave;
 
@@ -178,7 +191,17 @@
           s = drawSize * (1 + Math.min(0.55, speed * 0.05));
         }
 
-        ctx.fillStyle = c.color;
+        // De kleuren schuiven heen en weer door het verloop. Daardoor is elk
+        // blokje steeds even donker genoeg om te lezen, zonder dat het woord
+        // als geheel donkerder wordt.
+        var shift = 0;
+        if (!reduceMotion) {
+          var w01 = Math.sin(now * SHIFT_SPEED - c.phase) * 0.5 + 0.5;   // 0..1
+          shift = w01 * (SHIFT_DOWN + SHIFT_UP) - SHIFT_DOWN;
+        }
+        var ti = Math.round((c.bt + shift) * (STEPS_N - 1));
+        if (ti < 0) ti = 0; else if (ti > STEPS_N - 1) ti = STEPS_N - 1;
+        ctx.fillStyle = PALETTE[ti];
         var off = (s - drawSize) / 2;
         ctx.fillRect(px - off, py - off, s, s);
       }
@@ -210,7 +233,7 @@
       ctx.clearRect(0, 0, W, H);
       for (var i = 0; i < cells.length; i++) {
         var c = cells[i];
-        ctx.fillStyle = c.color;
+        ctx.fillStyle = PALETTE[Math.round(c.bt * (STEPS_N - 1))];
         ctx.fillRect(c.tx, c.ty, drawSize, drawSize);
       }
     }
