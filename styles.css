@@ -126,18 +126,32 @@ button{ font:inherit; color:inherit; }
 .nav.is-stuck .nav__inner{ padding-block:.7rem; }
 
 .nav__logo{
+  position:relative;
   display:inline-flex; align-items:center; gap:.6rem;
   font-family:var(--font-display); font-weight:700; font-size:1.06rem;
   letter-spacing:-.01em; text-decoration:none; color:var(--rose-deep);
   transition:color .25s var(--ease), translate .25s var(--ease);
 }
+/* streepje dat onder de naam uitgroeit; begint na de foto */
+.nav__logo::after{
+  content:""; position:absolute; bottom:-3px; right:0;
+  left:calc(34px + .6rem);
+  height:2px; border-radius:2px; background:currentColor;
+  scale:0 1; transform-origin:left;
+  transition:scale .34s var(--ease);
+}
 .nav__logo:hover{ color:var(--magenta); translate:0 -1px; }
+.nav__logo:hover::after,
+.nav__logo:focus-visible::after{ scale:1 1; }
+/* bovenaan de pagina is de foto verborgen; bij hover komt ze tevoorschijn */
+.nav__logo:hover .nav__avatar,
+.nav__logo:focus-visible .nav__avatar{ opacity:1; transform:scale(1) rotate(-7deg); }
 .nav__avatar{
   width:34px; height:34px; border-radius:50%; overflow:hidden; flex:0 0 auto;
   background:var(--pink-200);
   box-shadow:0 0 0 2px rgba(255,255,255,.9), 0 6px 14px -8px rgba(216,70,93,.6);
   opacity:0; transform:scale(.6);
-  transition:opacity .4s var(--ease), transform .4s var(--ease);
+  transition:opacity .4s var(--ease), transform .45s var(--pop);
 }
 .nav__avatar img{ width:100%; height:100%; object-fit:cover; }
 .nav.is-stuck .nav__avatar{ opacity:1; transform:scale(1); }
