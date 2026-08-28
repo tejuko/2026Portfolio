@@ -48,9 +48,10 @@ niet? Doe een **harde verversing**: `Cmd + Shift + R`.
 ## De dingen die je het vaakst wil aanpassen
 
 ### De regel "Laten we samenwerken!"
-Dat is een link naar het contactgedeelte. In `index.html` staat hij als
-`<p class="about__closer"><a href="#contact">...`. Wil je hem naar iets anders
-laten wijzen, verander dan die `href`.
+Dat is een link naar het contactgedeelte. Hij ziet er bewust uit als gewone
+tekst; alleen als je eroverheen gaat wisselt de kleur. In `index.html` staat hij
+als `<p class="about__closer"><a href="#contact">...`. Wil je hem naar iets
+anders laten wijzen, verander dan die `href`.
 
 ### Een tekst veranderen
 Zoek in `index.html` naar de tekst zoals die op de site staat en typ hem over.
