@@ -41,7 +41,7 @@ niet? Doe een **harde verversing**: `Cmd + Shift + R`.
 | `assets/CV_Tess_Kollof.pdf` | Je cv, waar de knop "Download cv" naartoe linkt. |
 | `.nojekyll` | Een leeg bestandje dat GitHub nodig heeft. Niet weghalen. |
 | `bronbestanden/` | De **originelen**: het Figma-ontwerp, screenshots van de prototypes, de icoon-PNG's en je foto's op volle resolutie. De site gebruikt deze map niet, hij staat er zodat je later niets kwijt bent. |
-| `tools/` | Scripts om de projectbeelden en de iconen opnieuw te maken. Zie `PROJECT-GESCHIEDENIS.md`. |
+| `tools/` | Scripts om de projectbeelden en de iconen opnieuw te maken, en een controle op afgesneden verlopen. |
 
 ---
 
@@ -170,6 +170,18 @@ einde van de pagina, dan wordt hij daar alsnog afgekapt. Daarom staat het
 middelpunt op `top: 38%` in plaats van 50% en is de hoogte `130%`: de overloop
 gaat vooral naar boven, waar het projectengedeelte zit. **Maak je die hoogte
 groter, controleer dan of de onderkant nog binnen de pagina valt.**
+
+Vierde valkuil: **zet een gloed nooit in een element dat moet scrollen.** De
+projectenrij (`.rail`) heeft `overflow` nodig om horizontaal te kunnen schuiven,
+en dat kapt de gloed recht af. Daarom staat die gloed op `.projects`, het
+gedeelte eromheen.
+
+### Zelf controleren
+
+Twijfel je of een verloop ergens wordt afgesneden? Er is een script dat dat voor
+je nakijkt. Zie [`tools/controleer-gloeden.py`](tools/controleer-gloeden.py) — het
+verbergt alle inhoud, rendert alleen de wolken en meldt elke harde streep. Je wil
+"ALLES SCHOON" zien.
 
 ---
 

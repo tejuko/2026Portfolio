@@ -587,6 +587,21 @@ body.menu-open .mobilemenu nav a{ opacity:1; transform:none; }
    Projecten
    ========================================================= */
 .projects{ position:relative; padding-block:clamp(1rem,3vw,2rem) clamp(4rem,10vw,7rem); }
+/* Kleurwolk achter de projectkaarten, zodat hun glas iets te tonen heeft.
+   Deze hoort op de sectie en NIET op .rail: die rail heeft overflow nodig om
+   horizontaal te kunnen scrollen, en clipt de gloed dus recht af.
+   closest-side met een laatste stop op 100% garandeert dat de gloed naar
+   doorzichtig uitloopt in plaats van op een rand af te breken. */
+.projects::before{
+  content:""; position:absolute; z-index:-1; pointer-events:none;
+  left:50%; top:46%; translate:-50% -50%;
+  width:min(150vw,1600px); height:104%;
+  background:
+    radial-gradient(closest-side at 30% 46%,
+      rgba(254,151,165,.32), rgba(254,151,165,.12) 46%, rgba(254,151,165,0) 100%),
+    radial-gradient(closest-side at 68% 56%,
+      rgba(237,62,120,.19), rgba(237,62,120,.07) 44%, rgba(237,62,120,0) 100%);
+}
 .projects__deco{ position:absolute; inset:0; pointer-events:none; }
 .projects__deco .deco{ color:var(--pink-200); }
 .deco--p1{ width:64px; top:2%;  right:6%;  animation-delay:-1.1s; }
@@ -623,18 +638,6 @@ body.menu-open .mobilemenu nav a{ opacity:1; transform:none; }
 .rail::-webkit-scrollbar{ display:none; }
 .rail.is-dragging{ cursor:grabbing; scroll-snap-type:none; }
 .rail.is-dragging *{ pointer-events:none; }
-.rail{ position:relative; isolation:isolate; }
-/* kleurwolk achter de rail, zodat het glas van de kaarten iets te tonen heeft.
-   closest-side houdt de gloed weg van de randen. */
-.rail::before{
-  content:""; position:absolute; z-index:-1; pointer-events:none;
-  left:0; right:0; top:-14%; bottom:-14%;
-  background:
-    radial-gradient(closest-side at 20% 45%,
-      rgba(254,151,165,.34), rgba(254,151,165,.12) 48%, rgba(254,151,165,0) 100%),
-    radial-gradient(closest-side at 62% 55%,
-      rgba(237,62,120,.20), rgba(237,62,120,.07) 46%, rgba(237,62,120,0) 100%);
-}
 .rail__list{
   display:flex; gap:clamp(1rem,2vw,1.5rem);
   padding-inline:max(var(--gutter), calc((100vw - var(--wrap)) / 2 + var(--gutter)));
