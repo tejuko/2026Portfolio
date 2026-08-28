@@ -780,15 +780,43 @@ body.menu-open .mobilemenu nav a{ opacity:1; transform:none; }
   box-shadow:0 22px 50px -30px rgba(216,70,93,.7);
 }
 .pill__item{
+  position:relative; isolation:isolate;
   display:inline-flex; align-items:center; gap:.55rem;
   padding:.55rem 1.05rem; border-radius:999px;
   font-weight:700; font-size:.95rem; text-decoration:none;
   color:var(--rose-deep);
-  transition:background .25s var(--ease), color .25s var(--ease), translate .25s var(--ease);
+  transition:color .28s var(--ease), translate .32s var(--pop);
 }
-.pill__item:hover{ background:var(--white); color:var(--magenta); translate:0 -2px; }
-.pill__icon{ display:grid; place-items:center; width:26px; height:26px; flex:0 0 auto; }
+/* witte pil die verend opduikt, met een zachte gloedring eromheen */
+.pill__item::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  border-radius:999px; background:var(--white);
+  box-shadow:0 10px 22px -12px rgba(216,70,93,.55),
+             0 0 0 5px rgba(254,151,165,.22);
+  opacity:0; scale:.82;
+  transition:opacity .24s var(--ease), scale .36s var(--pop);
+}
+/* streepje dat vanuit het midden uitgroeit onder de tekst */
+.pill__item::after{
+  content:""; position:absolute; left:1.05rem; right:1.05rem; bottom:.34rem;
+  height:2px; border-radius:2px; background:var(--magenta);
+  scale:0 1; transform-origin:center;
+  transition:scale .34s var(--ease);
+}
+.pill__item:hover{ color:var(--magenta); translate:0 -3px; }
+.pill__item:hover::before,
+.pill__item:focus-visible::before{ opacity:1; scale:1; }
+.pill__item:hover::after,
+.pill__item:focus-visible::after{ scale:1 1; }
+
+.pill__icon{
+  display:grid; place-items:center; width:26px; height:26px; flex:0 0 auto;
+  transition:scale .4s var(--pop), rotate .4s var(--pop);
+}
 .pill__icon svg{ width:24px; height:24px; color:var(--magenta); }
+/* het icoon wipt op en draait even mee */
+.pill__item:hover .pill__icon,
+.pill__item:focus-visible .pill__icon{ scale:1.2; rotate:-12deg; }
 @media (max-width:560px){
   .pill{ border-radius:var(--r-lg); flex-direction:column; align-items:stretch; }
   .pill__item{ justify-content:flex-start; border-radius:var(--r-md); }
