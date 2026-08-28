@@ -434,8 +434,10 @@ body.menu-open .mobilemenu nav a{ opacity:1; transform:none; }
   display:inline-flex; align-items:center; gap:.35rem;
   background:var(--magenta); color:#fff;
   font-family:var(--font-display); font-weight:700; font-size:.95rem;
-  padding:.45rem .85rem; border-radius:999px;
-  rotate:8deg;
+  padding:.5rem .9rem; border-radius:999px;
+  /* NIET roteren: de foto eronder staat al schuin, en tekst die twee keer
+     gedraaid wordt valt tussen de pixels in en wordt wazig */
+  rotate:0deg;
   box-shadow:0 12px 26px -14px rgba(237,62,120,.9);
 }
 .about__sticker svg{ width:14px; height:14px; }

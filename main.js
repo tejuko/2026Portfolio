@@ -38,10 +38,11 @@
     // De kleurgolf. SHIFT_DOWN is hoeveel lichter het mag worden, SHIFT_UP
     // hoeveel dieper. Vooral naar dieper, zodat het nooit slechter leesbaar
     // wordt dan de rusttoestand.
-    var SHIFT_DOWN  = 0.07;
-    var SHIFT_UP    = 0.34;
-    var SHIFT_SPEED = 0.00075;   // hoger = snellere golf
-    var SHIFT_LENGTH = 0.0055;   // hoger = kortere golf, meer banen tegelijk
+    var SHIFT_DOWN  = 0.06;
+    var SHIFT_UP    = 0.46;
+    var SHIFT_SPEED = 0.00090;   // hoger = snellere golf
+    var SHIFT_LENGTH = 0.0095;   // hoger = kortere golf, meer banen tegelijk
+    var SHIFT_TILT   = 0.35;     // hoe schuin de golf staat, 0 = kaarsrecht
 
     var W = 0, H = 0, dpr = 1, cellSize = 8, drawSize = 7;
     var cells = [];
@@ -133,7 +134,9 @@
           // plek in het verloop (0 = wit, 1 = diep roze) en de eigen fase van de
           // kleurgolf, zodat die diagonaal over het woord loopt
           bt: t,
-          phase: (hx + hy) * SHIFT_LENGTH
+          // vooral horizontaal, met een lichte schuinte: zo reist de golf
+          // zichtbaar van de ene kant van het woord naar de andere
+          phase: (hx + hy * SHIFT_TILT) * SHIFT_LENGTH
         });
       }
       return cells.length > 0;
@@ -345,13 +348,22 @@
     });
     var ids = Object.keys(map);
     if (ids.length && 'IntersectionObserver' in window) {
+      // Bijhouden welke secties in beeld zijn. Alleen reageren op binnenkomst is
+      // niet genoeg: scroll je terug naar de hero, dan blijft de laatste link
+      // gemarkeerd staan terwijl je in geen enkele sectie meer bent.
+      var inView = {};
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
-          if (en.isIntersecting) {
-            links.forEach(function (l) { l.classList.remove('is-active'); });
-            map[en.target.id].classList.add('is-active');
-          }
+          if (en.isIntersecting) inView[en.target.id] = true;
+          else delete inView[en.target.id];
         });
+        // de bovenste sectie die in beeld is, wint
+        var current = null;
+        for (var i = 0; i < ids.length; i++) {
+          if (inView[ids[i]]) { current = ids[i]; break; }
+        }
+        links.forEach(function (l) { l.classList.remove('is-active'); });
+        if (current) map[current].classList.add('is-active');
       }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
       ids.forEach(function (id) { io.observe(document.getElementById(id)); });
     }

@@ -83,6 +83,12 @@ Zoek naar `marquee__group`. Dat blok staat er **twee keer**, precies hetzelfde.
 Dat moet zo: daardoor loopt de balk rond zonder te haperen. Pas je iets aan, pas
 het dan in **beide** blokken aan.
 
+### Iets dat schuin staat wordt wazig
+Draai tekst niet twee keer. De foto bij Over mij staat al schuin (`rotate` op
+`.about__photo`), dus het `hoi!`-label daarbinnen staat zelf op `rotate: 0deg`.
+Zet je daar weer een hoek in, dan valt de tekst tussen de pixels en wordt hij
+wazig.
+
 ### De krullen en sterretjes verplaatsen
 Zoek in `styles.css` naar `.deco--`. Elke krul heeft zo'n regel met `top`,
 `left`/`right` en `width`. Verander die getallen om hem te verplaatsen of te
@@ -114,6 +120,10 @@ uit honderden kleine blokjes. Wat `main.js` doet:
 | `SHIFT_DOWN` | Hoeveel **lichter** de golf gaat. Houd dit laag. |
 | `SHIFT_SPEED` | Hoe snel de golf reist. Hoger = sneller. |
 | `SHIFT_LENGTH` | Hoe lang de golf is. Hoger = kortere golf, meer banen tegelijk. |
+| `SHIFT_TILT` | Hoe schuin de golf staat. `0` is kaarsrecht, hoger is schuiner. |
+
+Wil je de golf **duidelijker** zien? Zet `SHIFT_UP` hoger. Wil je meer banen
+tegelijk over het woord? Zet `SHIFT_LENGTH` hoger.
 
 **Let op:** ga je aan het raster zitten (`cellSize`, `drawSize`), bekijk het
 resultaat dan met animaties **uit**. Anders kijk je naar een half beeldje van de
@@ -166,6 +176,8 @@ Dit zit erin, dus houd het erin als je iets toevoegt:
   staan (het blok `@media (prefers-reduced-motion: reduce)` onderaan `styles.css`).
 - Krullen en sterretjes hebben `aria-hidden="true"`, zodat een screenreader ze
   overslaat.
+- Het menu markeert de sectie waar je bent met een randje. Sta je bovenaan in de
+  hero, dan is er geen sectie gemarkeerd. Dat is opzet.
 - Elke `<img>` heeft een `alt=` met een omschrijving.
 - Het Portfolio-canvas heeft een verborgen tekstversie, zodat een screenreader
   weet wat er staat.
