@@ -104,18 +104,6 @@ button{ font:inherit; color:inherit; }
 }
 
 /* =========================================================
-   Cursor-glow
-   ========================================================= */
-.cursorglow{
-  position:fixed; inset:0; z-index:0; pointer-events:none;
-  opacity:0; transition:opacity .5s var(--ease);
-  background:radial-gradient(320px 320px at var(--mx,50%) var(--my,50%),
-              rgba(254,151,165,.30), rgba(254,151,165,.14) 42%, rgba(254,151,165,0) 72%);
-}
-.cursorglow.is-on{ opacity:1; }
-@media (hover:none){ .cursorglow{ display:none; } }
-
-/* =========================================================
    Navigatie
    ========================================================= */
 .nav{
@@ -248,12 +236,13 @@ body.menu-open .mobilemenu nav a{ opacity:1; transform:none; }
   position:absolute; inset:0; z-index:-3;
   background:linear-gradient(180deg,
     var(--hero-top) 0%,
-    #FEA1AE 18%,
-    #FEB0BA 34%,
-    #FEC4C7 52%,
-    #FFDCD7 68%,
-    #FFEBE3 83%,
-    var(--cream-deep) 93%,
+    #FEA3B0 12%,
+    #FEB8BF 24%,
+    #FECFCD 36%,
+    #FFDFD9 48%,
+    #FFEBE2 62%,
+    #FFF3EB 78%,
+    var(--cream-deep) 91%,
     var(--cream) 100%);
 }
 /* zachte gloed, ruim binnen de rand zodat er niets afgesneden lijkt */
@@ -303,7 +292,7 @@ body.menu-open .mobilemenu nav a{ opacity:1; transform:none; }
 @media (hover:none){ .hero__hint{ display:none; } }
 
 .scrollcue{
-  position:absolute; z-index:2; bottom:clamp(1.5rem, 4vh, 2.75rem); left:50%; translate:-50% 0;
+  position:absolute; z-index:2; bottom:clamp(4.25rem, 8vh, 5.5rem); left:50%; translate:-50% 0;
   display:inline-flex; align-items:center; gap:.5rem;
   font-family:var(--font-display); font-weight:600; font-size:.8rem;
   letter-spacing:.22em; text-transform:uppercase; text-decoration:none;
@@ -330,32 +319,35 @@ body.menu-open .mobilemenu nav a{ opacity:1; transform:none; }
    Marquee
    ========================================================= */
 .marqueewrap{
-  position:relative; z-index:3;
-  /* clip op de x-as houdt de gekantelde balk binnen de paginabreedte,
-     visible op de y-as laat de schuine hoeken heel */
+  position:relative;
+  /* boven de hero uit: de balk rijdt over de onderkant van het verloop heen */
+  z-index:8;
   overflow-x:clip; overflow-y:visible;
-  margin-block:clamp(1rem,4vw,2.5rem) clamp(2.5rem,7vw,5rem);
-  -webkit-mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-          mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  margin-block:-2.75rem clamp(2.75rem,7vw,5.25rem);
+  pointer-events:none;
 }
 .marquee{
   position:relative;
   overflow:hidden;
-  padding-block:.95rem;
-  background:var(--rose);
+  padding-block:1.15rem;
+  background:linear-gradient(180deg, #F0697C, var(--rose) 45%, var(--rose-deep));
   color:#fff;
-  rotate:-1.1deg;
-  width:106%; margin-left:-3%;
-  box-shadow:var(--shadow-soft);
+  rotate:-2deg;
+  /* ruim breder dan het scherm zodat de schuine uiteinden buiten beeld vallen
+     en de balk echt van rand tot rand doorloopt */
+  width:124%; margin-left:-12%;
+  box-shadow:0 20px 44px -22px rgba(190,45,70,.55), inset 0 1px 0 rgba(255,255,255,.28);
+  pointer-events:auto;
 }
 .marquee__track{ display:flex; width:max-content; animation:slide 26s linear infinite; }
 .marquee:hover .marquee__track{ animation-play-state:paused; }
-.marquee__group{ display:flex; align-items:center; gap:2rem; padding-right:2rem; }
+.marquee__group{ display:flex; align-items:center; gap:2.35rem; padding-right:2.35rem; }
 .marquee__group span{
   font-family:var(--font-display); font-weight:700;
-  font-size:clamp(1rem, 2.2vw, 1.5rem); letter-spacing:-.01em; white-space:nowrap;
+  font-size:clamp(1.15rem, 2.6vw, 1.85rem); letter-spacing:-.015em; white-space:nowrap;
+  text-shadow:0 2px 6px rgba(150,30,52,.28);
 }
-.marquee__sep{ width:15px; height:15px; flex:0 0 auto; color:rgba(255,255,255,.75); }
+.marquee__sep{ width:17px; height:17px; flex:0 0 auto; color:rgba(255,255,255,.8); }
 @keyframes slide{ from{ translate:0 0; } to{ translate:-50% 0; } }
 
 /* =========================================================
@@ -535,12 +527,13 @@ body.menu-open .mobilemenu nav a{ opacity:1; transform:none; }
 }
 .card:hover{ translate:0 -8px; background:var(--pink-50); box-shadow:var(--shadow-card); }
 .card__shot{
-  border-radius:10px; overflow:hidden; background:var(--white);
-  box-shadow:0 4px 14px -10px rgba(216,70,93,.5);
+  border-radius:14px; overflow:hidden; background:var(--pink-200);
+  box-shadow:0 6px 18px -12px rgba(216,70,93,.55);
 }
-/* contain, niet cover: de projectbeelden zijn vierkant en mogen niet worden afgekapt */
+/* de bronbeelden zijn vierkant en zijn zo voorbereid dat ze een vierkant kader
+   exact vullen: geen witte randen boven/onder, en niets wordt afgesneden */
 .card__shot img{
-  width:100%; aspect-ratio:4/5; object-fit:contain; object-position:50% 50%;
+  width:100%; aspect-ratio:1/1; object-fit:cover; object-position:50% 50%;
   transition:scale .6s var(--ease);
 }
 .card:hover .card__shot img{ scale:1.05; }
@@ -709,5 +702,4 @@ body.menu-open .mobilemenu nav a{ opacity:1; transform:none; }
   }
   [data-reveal]{ opacity:1; translate:0 0; }
   .marquee__track{ animation:none; }
-  .cursorglow{ display:none; }
 }

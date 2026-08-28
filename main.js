@@ -16,8 +16,10 @@
     if (!ctx) return;
 
     var TEXT = 'Portfolio';
-    var COLOR_TOP = [255, 255, 255];   // wit, linksboven
-    var COLOR_BOT = [222, 66, 89];     // diep roze, rechtsonder
+    // verloop van licht roze naar diep bordeaux: nog steeds een duidelijke
+    // gradient, maar elk blokje heeft genoeg contrast met de lichte lucht
+    var COLOR_TOP = [255, 149, 162];   // #FE95A2 uit Tess' eigen palet
+    var COLOR_BOT = [162, 22, 52];     // diep bordeaux, rechtsonder
 
     var W = 0, H = 0, dpr = 1, cellSize = 8, drawSize = 7;
     var cells = [];
@@ -96,7 +98,7 @@
         var base = Math.min(1, Math.max(0, ny * 0.7 + nx * 0.3 + (Math.random() - 0.5) * 0.1));
         // machtsverheffing duwt het verloop sneller naar verzadigd roze, zodat er
         // minder blokjes in de vage middenzone vallen
-        var t = Math.pow(base, 0.78);
+        var t = Math.pow(base, 0.72);
         cells.push({
           tx: hx, ty: hy,
           x: hx, y: hy,
@@ -375,32 +377,7 @@
   }
 
   /* -------------------------------------------------------
-     5. Cursor-glow
-     ------------------------------------------------------- */
-  function initCursor() {
-    if (reduceMotion || !window.matchMedia('(hover:hover)').matches) return;
-    var el = document.querySelector('.cursorglow');
-    if (!el) return;
-    var tx = 0, ty = 0, cx = 0, cy = 0, on = false, raf = 0;
-
-    window.addEventListener('mousemove', function (e) {
-      tx = e.clientX; ty = e.clientY;
-      if (!on) { on = true; cx = tx; cy = ty; el.classList.add('is-on'); }
-      if (!raf) raf = requestAnimationFrame(loop);
-    }, { passive: true });
-
-    function loop() {
-      raf = 0;
-      cx += (tx - cx) * 0.12;
-      cy += (ty - cy) * 0.12;
-      el.style.setProperty('--mx', cx.toFixed(1) + 'px');
-      el.style.setProperty('--my', cy.toFixed(1) + 'px');
-      if (Math.abs(tx - cx) > 0.5 || Math.abs(ty - cy) > 0.5) raf = requestAnimationFrame(loop);
-    }
-  }
-
-  /* -------------------------------------------------------
-     6. Projectenrail: slepen + pijlen
+     5. Projectenrail: slepen + pijlen
      ------------------------------------------------------- */
   function initRail() {
     var rail = document.getElementById('rail');
@@ -451,7 +428,7 @@
   }
 
   /* -------------------------------------------------------
-     7. Kleine dingen
+     6. Kleine dingen
      ------------------------------------------------------- */
   function initMisc() {
     var y = document.getElementById('year');
@@ -463,7 +440,6 @@
     initNav();
     initReveal();
     initParallax();
-    initCursor();
     initRail();
     initMisc();
     initWordmark();

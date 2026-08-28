@@ -13,6 +13,18 @@ Persoonlijk portfolio. Statische site, geen build-stap: HTML + CSS + vanilla JS.
 | `main.js`    | Hero-effect, navigatie, scroll-reveal, parallax, projectenrail |
 | `assets/img` | Foto's en projectbeelden (jpg + webp) |
 
+## Projectbeelden
+
+De thumbnails zijn verse screenshots van de echte prototypes en de live site
+(niet de oude, aan de zijkanten afgekapte PNG's). Elk beeld staat compleet en op
+ware verhouding op een vlak in een kleur uit het project zelf, zodat het
+vierkante kader helemaal gevuld is zonder dat er iets wordt afgesneden.
+
+Let op bij het opnieuw maken: Adobe XD-prototypes hebben **WebGL** nodig. In een
+headless browser lukt dat alleen met `--enable-unsafe-swiftshader --use-gl=angle
+--use-angle=swiftshader`; zonder die vlaggen krijg je "There was a problem
+displaying this prototype".
+
 ## Hero-effect
 
 `Portfolio` is geen tekst maar een canvas. `main.js` zet het woord op een
