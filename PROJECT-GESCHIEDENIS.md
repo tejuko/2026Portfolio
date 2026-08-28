@@ -61,7 +61,8 @@ bronbestanden/             de ORIGINELEN, niet gebruikt door de site
   iconen/                  de icoon-PNG's, bron voor de SVG's in index.html
   tess-*-origineel.*       je foto's op volledige resolutie
 
-tools/                     scripts om de beelden en iconen opnieuw te maken
+tools/                     scripts om de beelden en iconen opnieuw te maken,
+                           plus een controle op afgesneden verlopen
 README.md                  hoe je dingen aanpast
 PROJECT-GESCHIEDENIS.md    dit bestand
 .nojekyll                  leeg bestandje dat GitHub Pages nodig heeft
@@ -262,6 +263,20 @@ Wil je hier iets veranderen, meet dan of de onderkant nog binnen de pagina valt.
 Je kunt dat controleren door in de browserconsole te kijken of
 `contactTop + sectieHoogte * 0.38 + gloedHoogte / 2` kleiner is dan
 `document.documentElement.scrollHeight`.
+
+**Zet een gloed nooit in een element dat moet scrollen.** De vierde keer ging het
+mis bij de projectenrij: die gloed stond op `.rail`, en die rail heeft `overflow`
+nodig om horizontaal te kunnen schuiven. Gevolg: een harde streep over de volle
+breedte, net onder de kaarten. De gloed staat nu op `.projects`, het gedeelte
+eromheen, dat geen overflow nodig heeft.
+
+**Deze fouten zijn met het oog slecht te zien**, want de streep zit in een zacht
+roze vlak op een zacht roze achtergrond. Daarom is er
+`tools/controleer-gloeden.py`: dat verbergt alle inhoud, rendert alleen de
+verlopen en meldt per beeldrij en per beeldkolom elke plotselinge kleursprong.
+Elke sprong is dan per definitie een afgesneden verloop. Draai het na elke
+wijziging aan een gloed. Het heeft twee van deze vier fouten gevonden die met
+kijken gemist waren.
 
 **`overflow-x: clip` met `overflow-y: visible`** is de truc voor de gekantelde
 skillbalk. Zonder die combinatie wordt de pagina breder dan het venster.
