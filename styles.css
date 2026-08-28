@@ -632,7 +632,11 @@ body.menu-open .mobilemenu nav a{ opacity:1; transform:none; }
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
-  padding-block:1.25rem 1.75rem;
+  /* Ruime onderruimte: deze rij moet overflow hebben om te kunnen schuiven, en
+     dat kapt alles af wat buiten de rij valt. Met te weinig ruimte wordt de
+     schaduw onder de kaarten recht afgesneden en zie je een streep over de
+     volle breedte. */
+  padding-block:1.25rem 3.75rem;
   cursor:grab;
 }
 .rail::-webkit-scrollbar{ display:none; }

@@ -270,6 +270,13 @@ nodig om horizontaal te kunnen schuiven. Gevolg: een harde streep over de volle
 breedte, net onder de kaarten. De gloed staat nu op `.projects`, het gedeelte
 eromheen, dat geen overflow nodig heeft.
 
+**En in datzelfde element ging het nog een vijfde keer mis.** Nadat de gloed
+verplaatst was, bleef er een streep staan op exact de onderkant van de rij. Dat
+waren niet de gloeden maar de **schaduwen onder de kaarten**, die door dezelfde
+`overflow` werden afgekapt. Opgelost met een ruime `padding-bottom` van `3.75rem`
+op `.rail`. Les: een element met `overflow` kapt alles af wat erbuiten valt, niet
+alleen achtergronden maar ook schaduwen.
+
 **Deze fouten zijn met het oog slecht te zien**, want de streep zit in een zacht
 roze vlak op een zacht roze achtergrond. Daarom is er
 `tools/controleer-gloeden.py`: dat verbergt alle inhoud, rendert alleen de

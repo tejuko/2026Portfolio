@@ -176,6 +176,11 @@ projectenrij (`.rail`) heeft `overflow` nodig om horizontaal te kunnen schuiven,
 en dat kapt de gloed recht af. Daarom staat die gloed op `.projects`, het
 gedeelte eromheen.
 
+Vijfde valkuil, in datzelfde element: die rij kapt **ook de schaduwen onder de
+kaarten** af. Daarom heeft `.rail` een ruime `padding-bottom` van `3.75rem`.
+Maak je die kleiner, of geef je de kaarten een grotere schaduw, dan komt de
+streep terug.
+
 ### Zelf controleren
 
 Twijfel je of een verloop ergens wordt afgesneden? Er is een script dat dat voor
