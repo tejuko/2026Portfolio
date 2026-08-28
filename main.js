@@ -16,11 +16,10 @@
     if (!ctx) return;
 
     var TEXT = 'Portfolio';
-    // wit linksboven naar diep bordeaux rechtsonder: het lichte verloop uit
-    // het Figma-ontwerp, maar met een S-curve (zie hieronder) zodat er bijna
-    // geen blokjes in de vage middentonen belanden
+    // wit linksboven naar zacht roze rechtsonder. Dit is het verloop van de
+    // eerste versie: geen bordeaux, want dat werd te donker.
     var COLOR_TOP = [255, 255, 255];   // wit, linksboven
-    var COLOR_BOT = [201, 30, 60];     // diep bordeaux, rechtsonder
+    var COLOR_BOT = [222, 66, 89];     // #DE4259, rechtsonder
 
     var W = 0, H = 0, dpr = 1, cellSize = 8, drawSize = 7;
     var cells = [];
@@ -99,11 +98,7 @@
         var base = Math.min(1, Math.max(0, ny * 0.7 + nx * 0.3 + (Math.random() - 0.5) * 0.1));
         // machtsverheffing duwt het verloop sneller naar verzadigd roze, zodat er
         // minder blokjes in de vage middenzone vallen
-        // S-curve: houdt de uiteinden lang vast (helder wit / diep bordeaux)
-        // en gaat snel door het midden heen, waar het contrast het zwakst is
-        var t = base < 0.5
-          ? 0.5 * Math.pow(base * 2, 2.3)
-          : 1 - 0.5 * Math.pow((1 - base) * 2, 2.3);
+        var t = Math.pow(base, 0.78);
         cells.push({
           tx: hx, ty: hy,
           x: hx, y: hy,
