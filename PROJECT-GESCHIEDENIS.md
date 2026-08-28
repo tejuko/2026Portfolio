@@ -246,8 +246,22 @@ badges, en bij de gloed rondom Contact.
 **Een gloed moet in zijn eigen doos passen, of het gedeelte moet hem laten
 doorlopen.** Bij Contact was de gloed 1478 px hoog in een gedeelte van 449 px met
 `overflow: hidden` — die werd recht afgekapt. Nu staat er
-`overflow-x: clip; overflow-y: visible`, is de gloed `height: 240%` en staat hij
-op `z-index: -1`, zodat hij achter de omliggende inhoud doorloopt.
+`overflow-x: clip; overflow-y: visible` en staat de gloed op `z-index: -1`, zodat
+hij achter de omliggende inhoud doorloopt.
+
+**En dan gaat het aan de andere kant mis.** Zodra de gloed mag doorlopen, loopt hij
+ook voorbij het einde van de pagina — onder Contact zit alleen de footer, zo'n
+80 px. Gemeten reikte hij 130 tot 235 px voorbij het documenteinde, afhankelijk
+van de schermbreedte, en daar werd hij weer recht afgekapt. Oplossing: het
+middelpunt op `top: 38%` in plaats van 50% en de hoogte terug naar `130%`. De
+overloop gaat nu naar boven, waar het projectengedeelte zit, en aan de onderkant
+is de gloed uitgefade met 66 tot 101 px marge. Nagemeten op 320, 390, 768, 1440
+en 1907 px breed.
+
+Wil je hier iets veranderen, meet dan of de onderkant nog binnen de pagina valt.
+Je kunt dat controleren door in de browserconsole te kijken of
+`contactTop + sectieHoogte * 0.38 + gloedHoogte / 2` kleiner is dan
+`document.documentElement.scrollHeight`.
 
 **`overflow-x: clip` met `overflow-y: visible`** is de truc voor de gekantelde
 skillbalk. Zonder die combinatie wordt de pagina breder dan het venster.

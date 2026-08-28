@@ -159,10 +159,17 @@ dan krijg je een zichtbare rechthoek op de pagina.
 
 Tweede valkuil met gloeden: de doos van de gloed moet **binnen** het gedeelte
 passen, of het gedeelte moet hem laten doorlopen. Bij Contact staat daarom
-`overflow-x: clip; overflow-y: visible` en heeft de gloed `height: 240%` met
-`z-index: -1`. Zo loopt hij achter de inhoud van de gedeeltes erboven en eronder
-door, in plaats van er recht afgekapt te worden. Zet je daar `overflow: hidden`,
-dan krijg je een harde streep terug.
+`overflow-x: clip; overflow-y: visible` en staat de gloed op `z-index: -1`. Zo
+loopt hij achter de inhoud van de gedeeltes erboven en eronder door, in plaats
+van er recht afgekapt te worden. Zet je daar `overflow: hidden`, dan krijg je een
+harde streep terug.
+
+Derde valkuil, en die is makkelijk te missen: onder het contactgedeelte zit alleen
+de footer, dus daar is nog maar ~80 px ruimte. Loopt de gloed verder dan het
+einde van de pagina, dan wordt hij daar alsnog afgekapt. Daarom staat het
+middelpunt op `top: 38%` in plaats van 50% en is de hoogte `130%`: de overloop
+gaat vooral naar boven, waar het projectengedeelte zit. **Maak je die hoogte
+groter, controleer dan of de onderkant nog binnen de pagina valt.**
 
 ---
 

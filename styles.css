@@ -730,16 +730,23 @@ body.menu-open .mobilemenu nav a{ opacity:1; transform:none; }
 /* De gloed is hoger dan de sectie zelf en staat op z-index -1, dus hij loopt
    achter de omliggende inhoud door en fadet helemaal naar doorzichtig uit.
    De hoogte is een percentage van de sectie: daardoor past de ellips altijd
-   binnen zijn eigen doos en kan hij nooit met een harde rand afbreken. */
+   binnen zijn eigen doos en kan hij nooit met een harde rand afbreken.
+
+   Het middelpunt staat op 38% en niet op 50%: onder de sectie zit alleen de
+   footer, dus daar is weinig ruimte. Door het middelpunt omhoog te schuiven
+   loopt de gloed vooral naar boven over (in het projectengedeelte) en is hij
+   aan de onderkant al uitgefade voordat de pagina eindigt. Maak je de hoogte
+   groter, controleer dan of de onderkant nog binnen de pagina valt - anders
+   krijg je onderaan een harde streep. */
 .contact::before{
   content:""; position:absolute; z-index:-1; pointer-events:none;
-  left:50%; top:50%; translate:-50% -50%;
-  width:min(150vw,1500px); height:240%;
+  left:50%; top:38%; translate:-50% -50%;
+  width:min(150vw,1500px); height:130%;
   background:radial-gradient(closest-side,
-    rgba(254,191,196,.54),
-    rgba(254,191,196,.34) 32%,
-    rgba(254,191,196,.14) 58%,
-    rgba(254,191,196,.04) 80%,
+    rgba(254,191,196,.56),
+    rgba(254,191,196,.38) 30%,
+    rgba(254,191,196,.18) 54%,
+    rgba(254,191,196,.05) 78%,
     rgba(254,191,196,0) 100%);
 }
 .contact__deco{ position:absolute; inset:0; pointer-events:none; }
