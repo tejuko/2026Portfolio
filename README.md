@@ -5,6 +5,11 @@ Mijn portfolio: **https://tejuko.github.io/2026Portfolio/**
 Dit is een "gewone" website: geen frameworks, geen installatie, geen build-stap.
 Je opent een bestand, verandert iets, slaat op, en ververst je browser.
 
+> **Kom je hier na een tijdje terug?** Lees dan
+> [PROJECT-GESCHIEDENIS.md](PROJECT-GESCHIEDENIS.md). Daar staat waarom de site
+> is zoals hij is, wat er al geprobeerd en afgekeurd is, en waar de originele
+> bestanden staan. Dit bestand gaat alleen over *hoe* je iets aanpast.
+
 ---
 
 ## Even snel: hoe pas ik iets aan?
@@ -35,6 +40,8 @@ niet? Doe een **harde verversing**: `Cmd + Shift + R`.
 | `assets/img/` | De foto's en projectbeelden. |
 | `assets/CV_Tess_Kollof.pdf` | Je cv, waar de knop "Download cv" naartoe linkt. |
 | `.nojekyll` | Een leeg bestandje dat GitHub nodig heeft. Niet weghalen. |
+| `bronbestanden/` | De **originelen**: het Figma-ontwerp, screenshots van de prototypes, de icoon-PNG's en je foto's op volle resolutie. De site gebruikt deze map niet, hij staat er zodat je later niets kwijt bent. |
+| `tools/` | Scripts om de projectbeelden en de iconen opnieuw te maken. Zie `PROJECT-GESCHIEDENIS.md`. |
 
 ---
 
