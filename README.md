@@ -150,6 +150,13 @@ Die wolken gebruiken `radial-gradient(closest-side, ...)`. Dat woord
 en nooit met een harde rand afbreekt. **Verander dat niet in een percentage** —
 dan krijg je een zichtbare rechthoek op de pagina.
 
+Tweede valkuil met gloeden: de doos van de gloed moet **binnen** het gedeelte
+passen, of het gedeelte moet hem laten doorlopen. Bij Contact staat daarom
+`overflow-x: clip; overflow-y: visible` en heeft de gloed `height: 240%` met
+`z-index: -1`. Zo loopt hij achter de inhoud van de gedeeltes erboven en eronder
+door, in plaats van er recht afgekapt te worden. Zet je daar `overflow: hidden`,
+dan krijg je een harde streep terug.
+
 ---
 
 ## Projectbeelden opnieuw maken

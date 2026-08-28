@@ -693,9 +693,9 @@ body.menu-open .mobilemenu nav a{ opacity:1; transform:none; }
 .card__meta{
   display:flex; align-items:center; justify-content:center; gap:.35rem;
   font-size:.76rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
-  color:var(--rose-soft); text-align:center;
+  color:var(--rose); text-align:center;
 }
-.card__meta svg{ width:13px; height:13px; flex:0 0 auto; color:var(--rose-soft); }
+.card__meta svg{ width:13px; height:13px; flex:0 0 auto; color:var(--rose); }
 .card__link{
   display:flex; align-items:center; justify-content:center; gap:.4rem;
   font-size:.8rem; font-weight:700; color:var(--rose);
@@ -723,17 +723,24 @@ body.menu-open .mobilemenu nav a{ opacity:1; transform:none; }
 .contact{
   position:relative;
   padding-block:clamp(3.5rem,9vw,6.5rem) clamp(4rem,10vw,7rem);
-  overflow:hidden;
+  /* clip alleen op de x-as, zodat de gloed hieronder verticaal mag doorlopen
+     in de secties erboven en eronder maar de pagina niet breder wordt */
+  overflow-x:clip; overflow-y:visible;
 }
+/* De gloed is hoger dan de sectie zelf en staat op z-index -1, dus hij loopt
+   achter de omliggende inhoud door en fadet helemaal naar doorzichtig uit.
+   De hoogte is een percentage van de sectie: daardoor past de ellips altijd
+   binnen zijn eigen doos en kan hij nooit met een harde rand afbreken. */
 .contact::before{
-  content:""; position:absolute; z-index:0; pointer-events:none;
-  left:50%; top:52%; translate:-50% -50%;
-  width:min(170vw,1700px); aspect-ratio:1.15;
+  content:""; position:absolute; z-index:-1; pointer-events:none;
+  left:50%; top:50%; translate:-50% -50%;
+  width:min(150vw,1500px); height:240%;
   background:radial-gradient(closest-side,
-    rgba(254,191,196,.50),
-    rgba(254,191,196,.30) 34%,
-    rgba(254,191,196,.12) 60%,
-    rgba(254,191,196,0) 88%);
+    rgba(254,191,196,.54),
+    rgba(254,191,196,.34) 32%,
+    rgba(254,191,196,.14) 58%,
+    rgba(254,191,196,.04) 80%,
+    rgba(254,191,196,0) 100%);
 }
 .contact__deco{ position:absolute; inset:0; pointer-events:none; }
 .contact__deco .deco{ color:var(--pink-300); }

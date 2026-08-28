@@ -352,6 +352,7 @@
       // niet genoeg: scroll je terug naar de hero, dan blijft de laatste link
       // gemarkeerd staan terwijl je in geen enkele sectie meer bent.
       var inView = {};
+      var lastCurrent = null;
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
           if (en.isIntersecting) inView[en.target.id] = true;
@@ -364,8 +365,25 @@
         }
         links.forEach(function (l) { l.classList.remove('is-active'); });
         if (current) map[current].classList.add('is-active');
-      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+        lastCurrent = current;
+      }, { rootMargin: '-35% 0px -35% 0px', threshold: 0 });
       ids.forEach(function (id) { io.observe(document.getElementById(id)); });
+
+      // Onderaan de pagina past de laatste sectie soms niet meer in het
+      // kijkvenster van de observer. Ben je (bijna) beneden, dan is het altijd
+      // de laatste sectie.
+      var atBottom = function () {
+        var doc = document.documentElement;
+        var bottom = doc.scrollHeight - window.innerHeight - window.scrollY;
+        if (bottom > 90) return;
+        var last = ids[ids.length - 1];
+        if (lastCurrent === last) return;
+        links.forEach(function (l) { l.classList.remove('is-active'); });
+        map[last].classList.add('is-active');
+        lastCurrent = last;
+      };
+      window.addEventListener('scroll', atBottom, { passive: true });
+      window.addEventListener('resize', atBottom);
     }
   }
 
