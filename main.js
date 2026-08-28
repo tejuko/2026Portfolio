@@ -48,7 +48,7 @@
       octx.textAlign = 'center';
       octx.textBaseline = 'middle';
 
-      var maxW = W * (W < 620 ? 0.95 : 0.9);
+      var maxW = W * (W < 620 ? 0.96 : 0.94);
       var size = H * 0.92;
       for (var i = 0; i < 24; i++) {
         octx.font = '700 ' + size + 'px "Space Grotesk", system-ui, sans-serif';
@@ -68,18 +68,27 @@
       }
 
       // 1b. raster aftasten -> pixelblokjes
-      cellSize = Math.max(4, Math.round(W / 130));
-      var gap = Math.max(1, Math.round(cellSize * 0.16));
-      drawSize = cellSize - gap;
+      cellSize = Math.max(4, W / 142);
+      drawSize = cellSize * 0.9;
 
       cells = [];
       var minX = W, maxX = 0, minY = H, maxY = 0;
       var hits = [];
+      // Bedekking per cel meten in plaats van een enkele pixel in het midden.
+      // Met een enkele sample vallen randcellen willekeurig aan of uit en worden
+      // de letters rommelig; het gemiddelde geeft nette, regelmatige vormen.
+      var STEPS = 4;
       for (var y = 0; y < H; y += cellSize) {
         for (var x = 0; x < W; x += cellSize) {
-          var sx = Math.min(W - 1, x + (cellSize >> 1));
-          var sy = Math.min(H - 1, y + (cellSize >> 1));
-          if (data[(sy * W + sx) * 4 + 3] > 130) {
+          var cover = 0;
+          for (var iy = 0; iy < STEPS; iy++) {
+            for (var ix = 0; ix < STEPS; ix++) {
+              var sx = Math.min(W - 1, Math.round(x + (ix + 0.5) * cellSize / STEPS));
+              var sy = Math.min(H - 1, Math.round(y + (iy + 0.5) * cellSize / STEPS));
+              if (data[(sy * W + sx) * 4 + 3] > 120) cover++;
+            }
+          }
+          if (cover >= STEPS * STEPS * 0.45) {
             hits.push([x, y]);
             if (x < minX) minX = x;
             if (x > maxX) maxX = x;
@@ -161,7 +170,7 @@
 
           // rustige golf die van links naar rechts loopt (per kolom, niet per blokje,
           // anders valt het woord uiteen in ruis)
-          var wave = Math.sin(now * 0.0016 + c.tx * 0.016) * 1.2;
+          var wave = Math.sin(now * 0.0014 + c.tx * 0.014) * 0.7;
           px = c.x;
           py = c.y + wave;
 
