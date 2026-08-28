@@ -16,9 +16,14 @@ Persoonlijk portfolio. Statische site, geen build-stap: HTML + CSS + vanilla JS.
 ## Projectbeelden
 
 De thumbnails zijn verse screenshots van de echte prototypes en de live site
-(niet de oude, aan de zijkanten afgekapte PNG's). Elk beeld staat compleet en op
-ware verhouding op een vlak in een kleur uit het project zelf, zodat het
-vierkante kader helemaal gevuld is zonder dat er iets wordt afgesneden.
+(niet de oude, aan de zijkanten afgekapte PNG's). Ze zijn gemaskeerd op een vast
+vierkant formaat met ronde hoeken.
+
+Voor de twee landschap-ontwerpen blijft de volle breedte heel en wordt boven en
+onder bijgevuld met de **mediaan-kleur van de buitenste rijen** van het artboard
+zelf. Dat is precies de achtergrondkleur van het ontwerp, dus de vulling is
+onzichtbaar: geen witte randen, en niets wordt afgesneden. Bakje Plant is een
+mobiele site en wordt vierkant vanaf de bovenkant gesneden.
 
 Let op bij het opnieuw maken: Adobe XD-prototypes hebben **WebGL** nodig. In een
 headless browser lukt dat alleen met `--enable-unsafe-swiftshader --use-gl=angle
