@@ -41,7 +41,7 @@ niet? Doe een **harde verversing**: `Cmd + Shift + R`.
 | `assets/CV_Tess_Kollof.pdf` | Je cv, waar de knop "Download cv" naartoe linkt. |
 | `.nojekyll` | Een leeg bestandje dat GitHub nodig heeft. Niet weghalen. |
 | `bronbestanden/` | De **originelen**: het Figma-ontwerp, screenshots van de prototypes, de icoon-PNG's en je foto's op volle resolutie. De site gebruikt deze map niet, hij staat er zodat je later niets kwijt bent. |
-| `tools/` | Scripts om de projectbeelden en de iconen opnieuw te maken, en een controle op afgesneden verlopen. |
+| `tools/` | Hulpscripts: een nieuw project toevoegen, de beelden en iconen opnieuw maken, en een controle op afgesneden verlopen. |
 
 ---
 
@@ -69,21 +69,92 @@ Alle kleuren staan **bovenaan** `styles.css`, in het blokje dat begint met
 
 Verander een kleur **alleen hier**, niet op tien plekken verderop in het bestand.
 
-### Een project toevoegen of aanpassen
-Zoek in `index.html` naar `<li class="card"`. Elk project is zo'n blok. Kopieer
-een heel blok (van `<li class="card"` tot en met de bijbehorende `</li>`), plak
-het eronder en verander:
+### Een project toevoegen — stap voor stap
 
-- de `src=` en `srcset=` → naar je nieuwe beeld in `assets/img/`
-- de `alt=` → een korte omschrijving van het beeld (voor screenreaders)
-- de `<h3 class="card__title">` → de projectnaam
-- de `<p class="card__desc">` → de omschrijving
-- de `href=` van de knop → waar "Bekijk" naartoe gaat
+Het lastigste is het beeld: de kaarten hebben een **vierkant** beeldvlak en dat
+moet helemaal gevuld zijn, anders krijg je witte randen. Daarvoor is een script
+dat het werk voor je doet. Je hoeft niets van code te snappen.
 
-### Een nieuw projectbeeld klaarmaken
-De beelden zijn **vierkant** en vullen het kader helemaal. Maak je beeld dus
-vierkant voordat je hem erin zet, anders wordt hij afgesneden. Zet hem in
-`assets/img/` en verwijs ernaar in `index.html`.
+#### Stap 1 — eenmalig: Python-pakketten installeren
+
+Alleen de eerste keer:
+
+```bash
+pip install pillow numpy
+```
+
+#### Stap 2 — maak een afbeelding van je project
+
+Een screenshot van je ontwerp of je website. **Elk formaat mag**: liggend,
+staand of vierkant. Snij wel de lege ruimte om je ontwerp weg, zodat alleen je
+ontwerp overblijft.
+
+#### Stap 3 — laat het script het beeld maken
+
+```bash
+python3 tools/nieuw-project.py pad/naar/jouw-screenshot.png "Naam van het project"
+```
+
+Bijvoorbeeld:
+
+```bash
+python3 tools/nieuw-project.py ~/Desktop/mijn-app.png "Mijn App"
+```
+
+Het script maakt er een vierkant beeld van dat het kader precies vult:
+
+| Jouw beeld | Wat het script doet |
+|---|---|
+| Liggend | De volle breedte blijft staan. Boven en onder wordt bijgevuld met de achtergrondkleur van je eigen ontwerp, dus je ziet die vulling niet. |
+| Staand | Er wordt een vierkant vanaf de bovenkant gesneden. |
+| Vierkant | Blijft zoals het is. |
+
+Het zet een `.jpg` en een `.webp` in `assets/img/`.
+
+#### Stap 4 — plak het stukje HTML
+
+Het script **print zelf het stukje HTML** dat je nodig hebt, met de juiste
+bestandsnamen er al in. Kopieer dat.
+
+Open `index.html`, zoek op `<li class="card card--more"` (dat is de laatste
+kaart, die met "de rest staat op GitHub") en plak jouw blok er **net boven**.
+
+#### Stap 5 — vul de vier stukken in HOOFDLETTERS in
+
+In het geplakte blok staan vier plekken die je moet vervangen:
+
+| Wat er staat | Wat jij invult |
+|---|---|
+| `alt="OMSCHRIJF HIER..."` | Kort wat er op het beeld staat. Dit leest een screenreader voor. |
+| `SCHRIJF HIER EEN OF TWEE REGELS...` | De omschrijving die op de kaart komt. |
+| `href="HTTPS://LINK-NAAR-JE-PROJECT"` | Waar de knop "Bekijk" naartoe gaat. |
+| `ZOIETS ALS: FIGMA ONTWERP` | Het labeltje onder de knop. |
+
+Wil je onder de knop een **link** in plaats van een labeltje (zoals "Code op
+GitHub" bij Bakje Plant)? Het script print onderaan de regel die je daarvoor in
+de plaats zet.
+
+#### Stap 6 — kijken en online zetten
+
+Dubbelklik `index.html` om het te bekijken. Klopt het?
+
+```bash
+git add -A
+git commit -m "Project Mijn App toegevoegd"
+git push
+```
+
+Na ongeveer een minuut staat het live.
+
+#### Even opletten
+
+- De kaarten staan in een **rij die je horizontaal kunt schuiven**. Je kunt dus
+  zoveel projecten toevoegen als je wil; er komt automatisch een schuifbalk bij.
+- Heb je genoeg projecten, dan kun je de laatste kaart met "de rest staat op
+  GitHub" weghalen. Dat is het hele blok `<li class="card card--more">`.
+- Een project **aanpassen** in plaats van toevoegen: zoek de titel in
+  `index.html` en verander de tekst eromheen. Je hebt het script alleen nodig
+  als je ook een nieuw beeld wil.
 
 ### De lopende balk met skills
 Zoek naar `marquee__group`. Dat blok staat er **twee keer**, precies hetzelfde.

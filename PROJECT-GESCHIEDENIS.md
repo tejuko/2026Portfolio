@@ -176,6 +176,18 @@ anders vervuilt.
 
 Opnieuw maken: `python3 tools/maak-projectbeelden.py`
 
+### Een nieuw project toevoegen
+
+Omdat het vierkante beeldvlak de moeilijkste stap is, is er
+`tools/nieuw-project.py`. Dat neemt elk formaat aan, past dezelfde regels toe als
+hierboven, schrijft de jpg en webp weg en **print het complete stukje HTML** met
+de juiste bestandsnamen erin. Plakken en vier stukken in hoofdletters invullen.
+Het stap-voor-staprecept staat in `README.md`.
+
+Getest door een echte testkaart in de pagina te plakken: vijf kaarten, geen
+gebroken beelden, geen horizontale overloop, geen JavaScript-fouten, en de kaart
+zag er identiek uit aan de bestaande. Daarna weer verwijderd.
+
 ### Ook hier al afgekeurd
 
 | Wat | Waarom |
