@@ -38,6 +38,14 @@ cel een blokje met een eigen kleur uit het roze verloop. De blokjes vliegen bij
 het laden naar hun plek en worden daarna weggedrukt door je muis, met een veer
 die ze terugtrekt.
 
+## Iconen
+
+`index.html` begint met een inline SVG-sprite. De iconen die Tess aanleverde
+(medaille, baret, mail, LinkedIn, GitHub, vinkje-badge, dubbele chevron) zijn
+gevectoriseerd uit haar PNG's, dus scherp op elk formaat. De witte delen zijn in
+de bron transparant; daarom staat elk pad op `fill-rule="evenodd"` en erft de
+kleur via `currentColor`.
+
 ## Zelf aanpassen
 
 - **Kleuren** → `:root` bovenaan `styles.css`
